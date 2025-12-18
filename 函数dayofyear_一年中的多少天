@@ -1,0 +1,30 @@
+#include<stdio.h>
+int dayofyear(int year, int month, int day);
+
+int main() {
+	int year,month,day;
+	scanf_s("%d %d %d",&year,&month,&day);
+	printf("%d", dayofyear(year, month, day));
+	return 0;
+}
+
+int dayofyear(int year, int month, int day) {
+	int a[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };//平年
+	int b[12] = { 31,29,31,30,31,30,31,31,30,31,30,31 };//闰年
+	int i,sum=0;
+	if (year%4==0 && year%100!=0)
+	{
+		for (i = 0; i < month-1; i++) {
+			sum += b[i];
+		}
+		sum += day;
+	}
+	else
+	{
+		for (i = 0; i < month-1; i++) {
+			sum += a[i];
+		}
+		sum += day;
+	}
+	return sum;
+}
