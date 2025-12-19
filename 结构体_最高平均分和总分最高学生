@@ -1,0 +1,47 @@
+#include<stdio.h>
+#define N 10
+struct inf
+{
+	char num[13];
+	char name[9];
+	int score[3];
+};
+
+int main() {
+	struct inf a[N];
+	int i, j;
+	for (i = 0; i < N; i++) {
+		scanf("%s %s %d %d %d", a[i].num, a[i].name, &a[i].score[0], &a[i].score[1], &a[i].score[2]);
+	}
+	float sum = 0, aver;
+	int esum[N];
+	for (i = 0; i < N; i++)
+	{
+		esum[i] = 0;
+	}
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			esum[i] += a[i].score[j];
+		}
+	}
+	for (i = 0; i < N; i++)
+	{
+		sum += esum[i];
+	}
+	aver = sum / 30;
+	printf("%.2f\n", aver);
+	int maxesum = esum[0];
+	int maxesumno = 0;
+	for (i = 1; i < N; i++)
+	{
+		if (esum[i] > maxesum)
+		{
+			maxesumno = i;
+			maxesum = esum[i];
+		}
+	}
+	printf("%s %s %d %d %d %f", a[maxesumno].num, a[maxesumno].name, a[maxesumno].score[0], a[maxesumno].score[1], a[maxesumno].score[2], (a[maxesumno].score[0] + a[maxesumno].score[1] + a[maxesumno].score[2]) / 3.0);
+	return 0;
+}
